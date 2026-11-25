@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antaris | Applied AI for European companies</title>
+<meta name="description" content="Antaris is an applied AI company based in Luxembourg. We advise European businesses on where AI earns its place, and we design, build and run the systems that follow.">
+<link rel="canonical" href="https://www.antaris.lu/">
+<meta name="theme-color" content="#070b1c">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.antaris.lu/">
+<meta property="og:title" content="Antaris | Applied AI for European companies">
+<meta property="og:description" content="We advise European businesses on where AI earns its place, and we design, build and run the systems that follow. Based in Luxembourg.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fonts are self-hosted so no visitor data goes to a third party. */
+@font-face { font-family: 'Sora'; font-style: normal; font-weight: 200 600; font-display: swap; src: url(fonts/sora-latin.woff2) format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(fonts/jetbrains-mono-latin.woff2) format('woff2'); }
+
+/* Layout: one dark page; a star chart painted on a canvas behind a left-aligned column of text. */
+:root { --bg: #070b1c; --veil: rgba(7, 11, 28, .78); --ink: #ebe9f3; --soft: #c5c8dc; --muted: #8f96b8; --line: #232a4a; --star: #ff7d4d; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink); font: 300 16px/1.55 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif; position: relative; overflow-x: hidden; }
+h1, h2, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+h1 { text-wrap: balance; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--star); outline-offset: 4px; }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.wrap { position: relative; max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 640px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 24px; padding-block: 30px; }
+.mark { font-weight: 600; letter-spacing: .34em; text-transform: uppercase; font-size: .95rem; }
+.mono { font: 400 .74rem/1.4 'JetBrains Mono', ui-monospace, Consolas, monospace; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+.hero { padding-block: clamp(56px, 12vw, 170px) clamp(64px, 11vw, 150px); display: grid; gap: 26px; max-width: 640px; }
+.hero .mono b { color: var(--star); font-weight: 500; }
+h1 { font-weight: 200; font-size: clamp(2.2rem, 5.6vw, 4.4rem); line-height: 1.06; letter-spacing: -.03em; }
+h1 span { color: var(--star); }
+.lede { color: var(--soft); font-size: clamp(1rem, 1.4vw, 1.15rem); max-width: 50ch; }
+.caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); border-top: 1px solid var(--line); background: var(--veil); }
+.caps li { padding: 26px 24px 30px 0; display: grid; gap: 10px; align-content: start; }
+.caps h2 { font-weight: 600; font-size: 1.02rem; letter-spacing: .01em; }
+.caps p { color: var(--muted); font-size: .92rem; }
+.eu { border-top: 1px solid var(--line); background: var(--veil); padding-block: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 40px; }
+.eu p { color: var(--soft); font-size: .95rem; }
+.contact { border-top: 1px solid var(--line); padding-block: 44px 28px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; background: var(--veil); }
+.contact a { font-size: clamp(1.4rem, 3.4vw, 2.2rem); letter-spacing: -.02em; text-decoration: none; border-bottom: 1px solid var(--star); padding-bottom: 4px; overflow-wrap: anywhere; }
+.contact a:hover { color: var(--star); }
+footer { padding-block: 0 34px; background: var(--veil); }
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header>
+    <span class="mark">Antaris</span>
+    <span class="mono">Luxembourg · 49.61° N 6.13° E</span>
+  </header>
+  <main>
+    <div class="hero">
+      <p class="mono"><b>●</b> Coming soon</p>
+      <h1>Find the AI worth building. <span>Then build it.</span></h1>
+      <p class="lede">Antaris is an applied AI company. We help European businesses decide where AI earns its place, and we design, build and run the systems that follow.</p>
+    </div>
+    <ul class="caps">
+      <li><h2>Advise</h2><p>Use cases ranked by return, data readiness and risk.</p></li>
+      <li><h2>Build</h2><p>AI-native software and agents, working in weeks.</p></li>
+      <li><h2>Integrate</h2><p>Wired into the systems and data you already have.</p></li>
+      <li><h2>Operate</h2><p>Measured, monitored and kept within budget.</p></li>
+    </ul>
+    <div class="eu">
+      <p>European by design. Data in EU cloud regions, with GDPR and the EU AI Act built into every system.</p>
+      <p>Starting in Luxembourg, working in English, French and German across the continent.</p>
+    </div>
+    <div class="contact">
+      <a href="mailto:hello@antaris.lu">hello@antaris.lu</a>
+      <span class="mono">Full site in preparation</span>
+    </div>
+  </main>
+  <footer><span class="mono">© 2026 Antaris · Luxembourg</span></footer>
+</div>
+<script>
+(function () {
+  var SKY_SEED = 4961, PX_PER_STAR = 2600, WIDE_FROM = 820, TAU = 6.2832;
+
+  /* Deterministic pseudo-random numbers so the sky looks the same on every load. */
+  function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }; }
+
+  /* Constellation figure, approximate positions in a unit box; BRIGHT is the highlighted star. */
+  var FIG = [[.80,.06],[.76,.17],[.74,.28],[.64,.27],[.58,.34],[.54,.43],[.46,.58],[.44,.70],[.43,.82],[.35,.91],[.22,.89],[.14,.79],[.16,.70],[.23,.64]];
+  var PATHS = [[0, 1, 2], [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]], BRIGHT = 4;
+
+  /* Paint the star field and the constellation behind the page. */
+  function drawSky() {
+    var c = document.getElementById('sky'), w = c.clientWidth, h = c.clientHeight;
+    if (!w || !h || !c.getContext) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = w * dpr; c.height = h * dpr;
+    var g = c.getContext('2d'); g.scale(dpr, dpr); g.clearRect(0, 0, w, h);
+    var r = rng(SKY_SEED), n = Math.round(w * h / PX_PER_STAR);
+    for (var i = 0; i < n; i++) {
+      var s = r(); g.fillStyle = 'rgba(214,220,255,' + (0.18 + s * 0.6).toFixed(2) + ')';
+      g.beginPath(); g.arc(r() * w, r() * h, 0.4 + s * s * 1.3, 0, TAU); g.fill();
+    }
+    var wide = w >= WIDE_FROM, size = wide ? Math.min(w * 0.46, 620) : Math.min(w * 0.9, 420);
+    var ox = wide ? w - size - Math.max(24, (w - 1120) / 2) : w - size * 0.92, oy = wide ? 70 : 40;
+    var alpha = wide ? 1 : 0.4;
+    function pt(i) { return [ox + FIG[i][0] * size, oy + FIG[i][1] * size]; }
+    g.strokeStyle = 'rgba(143,150,184,' + (0.5 * alpha) + ')'; g.lineWidth = 1;
+    PATHS.forEach(function (path) {
+      g.beginPath(); path.forEach(function (i, k) { var p = pt(i); k ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]); }); g.stroke();
+    });
+    FIG.forEach(function (_, i) {
+      if (i === BRIGHT) return;
+      var p = pt(i); g.fillStyle = 'rgba(235,233,243,' + alpha + ')'; g.beginPath(); g.arc(p[0], p[1], 2.2, 0, TAU); g.fill();
+    });
+    var a = pt(BRIGHT), glow = g.createRadialGradient(a[0], a[1], 0, a[0], a[1], 46);
+    glow.addColorStop(0, 'rgba(255,125,77,' + (0.55 * alpha) + ')'); glow.addColorStop(1, 'rgba(255,125,77,0)');
+    g.fillStyle = glow; g.beginPath(); g.arc(a[0], a[1], 46, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(255,125,77,' + Math.max(alpha, 0.8) + ')'; g.beginPath(); g.arc(a[0], a[1], 5, 0, TAU); g.fill();
+  }
+
+  var timer;
+  window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(drawSky, 120); });
+  window.addEventListener('load', drawSky);
+  drawSky();
+})();
+</script>
+</body>
+</html>
