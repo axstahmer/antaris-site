@@ -19,7 +19,7 @@
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(fonts/jetbrains-mono-latin.woff2) format('woff2'); }
 
 /* Layout: one dark page; a star chart painted on a canvas behind a left-aligned column of text. */
-:root { --bg: #070b1c; --veil: rgba(7, 11, 28, .78); --ink: #ebe9f3; --soft: #c5c8dc; --muted: #8f96b8; --line: #232a4a; --star: #ff7d4d; color-scheme: dark; }
+:root { --bg: #070b1c; --veil: rgba(7, 11, 28, .78); --ink: #ebe9f3; --soft: #c5c8dc; --muted: #8f96b8; --line: #232a4a; --star: #ff7d4d; --panel: #0d1330; --halo: rgba(255, 125, 77, .18); --shade: rgba(0, 0, 0, .55); color-scheme: dark; }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink); font: 300 16px/1.55 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif; position: relative; overflow-x: hidden; }
@@ -27,7 +27,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 ul { list-style: none; }
 h1 { text-wrap: balance; }
 a { color: inherit; }
-a:focus-visible { outline: 2px solid var(--star); outline-offset: 4px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--star); outline-offset: 4px; }
 canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .wrap { position: relative; max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 @media (min-width: 640px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
@@ -50,10 +50,49 @@ h1 span { color: var(--star); }
 .contact a { font-size: clamp(1.4rem, 3.4vw, 2.2rem); letter-spacing: -.02em; text-decoration: none; border-bottom: 1px solid var(--star); padding-bottom: 4px; overflow-wrap: anywhere; }
 .contact a:hover { color: var(--star); }
 footer { padding-block: 0 34px; background: var(--veil); }
+
+/* Event notice: a dismissible card pinned to the bottom right, or to the top right beside the headline when there is room. */
+.meet { position: fixed; z-index: 5; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: min(28rem, calc(100% - 40px)); box-shadow: 0 0 0 6px var(--halo), 0 18px 50px var(--shade); }
+.meet .card { display: grid; grid-template-columns: auto 1fr; text-decoration: none; border: 1px solid var(--star); background: var(--panel); }
+.meet .date { display: grid; align-content: center; gap: 4px; padding: 16px 18px; background: var(--star); color: var(--bg); }
+.meet .date .mono { color: var(--bg); }
+.meet .days { font-weight: 300; font-size: 2rem; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.meet .what { display: grid; gap: 6px; align-content: center; padding: 16px 44px 16px 18px; min-width: 0; }
+.meet .what strong { font-weight: 600; font-size: 1.3rem; line-height: 1.2; letter-spacing: -.02em; }
+.meet .what span { color: var(--soft); }
+.meet .what .go { display: none; color: var(--star); }
+.meet .card:hover strong { color: var(--star); }
+.meet .foot { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 2px 10px; padding: 12px 18px 14px; background: var(--panel); border: 1px solid var(--star); border-top: 0; color: var(--soft); font-size: .95rem; text-align: right; }
+.meet .foot a { color: var(--star); font-weight: 400; text-underline-offset: 3px; }
+.meet .foot a:hover { color: var(--ink); }
+.meet button { position: absolute; top: 2px; right: 2px; background: none; border: 0; color: var(--muted); font: 400 1.3rem/1 'Sora', system-ui, sans-serif; padding: 10px 12px; cursor: pointer; }
+.meet button:hover { color: var(--ink); }
+.meet:not([hidden]) ~ .wrap footer { padding-bottom: 210px; }
+@media (min-width: 1160px) {
+  .meet { bottom: auto; top: 84px; }
+  .meet .date { padding: 22px; }
+  .meet .days { font-size: 2.6rem; }
+  .meet .what { padding: 22px 44px 22px 22px; }
+  .meet .what .go { display: block; }
+  .meet .foot { padding-inline: 22px; }
+  .meet:not([hidden]) ~ .wrap footer { padding-bottom: 34px; }
+}
 </style>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
+<aside class="meet" id="meet" aria-label="Event">
+  <a class="card" href="https://adoptai.artefact.com/" target="_blank" rel="noopener">
+    <span class="date"><span class="days">03–04</span><span class="mono">Dec 2026</span></span>
+    <span class="what">
+      <strong>Meet us at Adopt AI</strong>
+      <span>Grand Palais, Paris</span>
+      <span class="mono go">adoptai.artefact.com ↗</span>
+    </span>
+  </a>
+  <p class="foot">Drop us a note to meet <a href="mailto:hello@antaris.lu">hello@antaris.lu</a></p>
+  <button type="button" id="meet-close" aria-label="Dismiss">×</button>
+</aside>
 <div class="wrap">
   <header>
     <span class="mark">Antaris</span>
@@ -122,6 +161,9 @@ footer { padding-block: 0 34px; background: var(--veil); }
     g.fillStyle = glow; g.beginPath(); g.arc(a[0], a[1], 46, 0, TAU); g.fill();
     g.fillStyle = 'rgba(255,125,77,' + Math.max(alpha, 0.8) + ')'; g.beginPath(); g.arc(a[0], a[1], 5, 0, TAU); g.fill();
   }
+
+  /* Let the visitor dismiss the event notice. */
+  document.getElementById('meet-close').addEventListener('click', function () { document.getElementById('meet').hidden = true; });
 
   var timer;
   window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(drawSky, 120); });
